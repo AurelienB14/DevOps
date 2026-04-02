@@ -31,3 +31,25 @@ jobs:
 
    - name: Build Docker containers
      run: docker compose build
+  
+ push-to-registry:
+  name: Push to Docker Hub
+  runs-on: ubuntu-latest
+  needs: [lint, docker-check]
+
+  steps: 
+   - name: Checkout repository
+     uses: actions/checkout@v4
+
+   - name: Log in to Docker Hub
+     uses: docker/login-action@v3
+     with: 
+      username: ${{ secrets.DOCKERHUB_USERNAME }}
+      password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+   - name: Build and push Docker image
+     uses: docker/build-push-action@v5
+     with:
+      context: ./mon-app-react
+      push: true
+      tags: votre-username/mon-app-react:latest
