@@ -19,7 +19,7 @@ jobs:
      run: npm run lint
 
    - name: Check code formatting
-     run: npm run format
+     run: npm run format:check
 
  docker-check:
   name: Docker Build Check
@@ -52,4 +52,4 @@ jobs:
      with:
       context: ./mon-app-react
       push: true
-      tags: votre-username/mon-app-react:latest
+      tags: AurelienB14/mon-app-react:latest
