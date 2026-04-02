@@ -1,0 +1,33 @@
+jobs:
+ lint:
+  name: Linter & Formatter
+  runs-on: ubuntu-latest
+
+  steps:
+   - name: code quality check
+     uses: actions/checkout@v3
+
+   - name: Setup Node.js 18
+     uses: actions/setup-node@v3
+     with:
+      node-version: 18
+
+   - name: Install dependencies
+     run: npm ci
+
+   - name: Run linter
+     run: npm run lint
+
+   - name: Check code formatting
+     run: npm run format
+
+ docker-check:
+  name: Docker Build Check
+  runs-on: ubuntu-latest
+
+  steps:
+   - name: Checkout repository
+     uses: actions/checkout@v3
+
+   - name: Build Docker containers
+     run: docker compose build
