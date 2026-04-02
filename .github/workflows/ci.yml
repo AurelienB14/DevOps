@@ -52,4 +52,4 @@ jobs:
      with:
       context: ./mon-app-react
       push: true
-      tags: AurelienB14/mon-app-react:latest
+      tags: aurelienb14/mon-app-react:latest
